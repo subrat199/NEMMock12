@@ -29,7 +29,7 @@ userRouter.post("/posting",async (req,res)=>{
    
 })
 userRouter.get('/listing', async (req, res) => {
-    const formData ={
+    const formData = new userModel.find({
         company: req.body.company,
         city: req.body.city,
         location: req.body.location,
@@ -39,7 +39,7 @@ userRouter.get('/listing', async (req, res) => {
         language: req.body.language,
         contract: req.body.contract,
         postedAt: req.body.postedAt
-    }
+    })
     try {
         res.status(200).send(formData)
     } catch (error) {
