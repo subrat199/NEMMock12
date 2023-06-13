@@ -8,6 +8,7 @@ const userSchema=mongoose.Schema({
     position:{type:String,require:true},
     language:{type:String,require:true},
     contract:{type:String,require:true},
+    postedAt:{type:Date,require:true},
 },{
     versionKey:false
 })

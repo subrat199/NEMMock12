@@ -9,7 +9,8 @@ userRouter.post("/posting",async (req,res)=>{
         level,
         position,
         language,
-        contract}=req.body
+        contract,
+    postedAt}=req.body
     try {
             const user=new userModel({company,
                 city,
@@ -18,7 +19,7 @@ userRouter.post("/posting",async (req,res)=>{
                 level,
                 position,
                 language,
-                contract})
+                contract,postedAt})
         await user.save()
         res.status(200).send("New user has been posted successfully") 
     } catch (error) {
