@@ -37,7 +37,7 @@ userRouter.get('/listing', async (req, res) => {
       let productsPage = await userModel.find({})
         .limit(10)
         .skip((page - 1) * 10);
-      res.status(200).send( { productsPage, productCount } );
+      res.status(200).send({data:{ productsPage, productCount }});
     } catch (error) {
       console.log(error);
       res.status(400).send({ msg: "Invalid Request Error Happened" });
@@ -49,7 +49,7 @@ userRouter.get('/filter', async (req, res) => {
         let productsPage = await userModel.find({role})
         .limit(10)
         .skip((page - 1) * 10)
-        res.status(200).send({ productsPage})
+        res.status(200).send({data:{ productsPage }})
     } catch (error) {
         console.log(error);
         res.status(400).send({ msg: "Invalid Request Error Happened" });
@@ -59,12 +59,12 @@ userRouter.get('/filter', async (req, res) => {
 userRouter.get("/sort", async (req, res) => {
     let { sort, page } = req.body;
     try {
-      let produtsPage = await userModel.find({})
+      let productsPage = await userModel.find({})
         .limit(10)
         .skip((page - 1) * 10)
         .sort({ postedAt: sort });
       let productCount = produtsPage.length;
-      res.status(200).send( { produtsPage, productCount } );
+      res.status(200).send( {data:{ productsPage, productCount }} );
     } catch (error) {
       console.log(error);
       res.status(400).send({ msg: "Invalid Request Error Happened" });
