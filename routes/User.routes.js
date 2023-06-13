@@ -44,9 +44,11 @@ userRouter.get('/listing', async (req, res) => {
     }
 })
 userRouter.get('/filter', async (req, res) => {
-    let {role}=req.body
+    let {role,page}=req.query
     try {
         let productsPage = await userModel.find({role})
+        .limit(10)
+        .skip((page - 1) * 10)
         res.status(200).send({ productsPage})
     } catch (error) {
         console.log(error);
