@@ -34,10 +34,10 @@ userRouter.get('/listing', async (req, res) => {
       let Total_products = await userModel.find({});
       let productCount = Total_products.length;
   
-      let produtsPage = await userModel.find({})
+      let productsPage = await userModel.find({})
         .limit(10)
         .skip((page - 1) * 10);
-      res.status(200).send({ data: { produtsPage, productCount } });
+      res.status(200).send( { productsPage, productCount } );
     } catch (error) {
       console.log(error);
       res.status(400).send({ msg: "Invalid Request Error Happened" });
