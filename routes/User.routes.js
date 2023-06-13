@@ -28,7 +28,26 @@ userRouter.post("/posting",async (req,res)=>{
     }
    
 })
-
+userRouter.get('/listing', async (req, res) => {
+    const formData ={
+        company: req.body.company,
+        city: req.body.city,
+        location: req.body.location,
+        role: req.body.role,
+        level: req.body.level,
+        position: req.body.position,
+        language: req.body.language,
+        contract: req.body.contract,
+        postedAt: req.body.postedAt
+    }
+    try {
+        res.status(200).send(formData)
+    } catch (error) {
+        console.log(error)
+        res.status(404).send("There is something wrong")
+    }
+    
+})
 module.exports={
     userRouter
 }
