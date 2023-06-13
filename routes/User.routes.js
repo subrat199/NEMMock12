@@ -43,6 +43,17 @@ userRouter.get('/listing', async (req, res) => {
       res.status(400).send({ msg: "Invalid Request Error Happened" });
     }
 })
+userRouter.get('/filter', async (req, res) => {
+    let {role}=req.body
+    try {
+        let productsPage = await userModel.find({role})
+        res.status(200).send({ productsPage})
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({ msg: "Invalid Request Error Happened" });
+    }
+
+})
 module.exports={
     userRouter
 }
