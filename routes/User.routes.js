@@ -41,7 +41,7 @@ userRouter.get('/listing', async (req, res) => {
         postedAt: req.body.postedAt
     }
     try {
-        res.status(200).send(formData)
+        res.status(200).json(formData)
     } catch (error) {
         console.log(error)
         res.status(404).send("There is something wrong")
