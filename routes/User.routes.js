@@ -29,14 +29,19 @@ userRouter.post("/posting",async (req,res)=>{
    
 })
 userRouter.get('/listing', async (req, res) => {
-    const formData = new userModel.find()
+    let { page } = req.body;
     try {
-        res.status(200).send(formData)
+      let Total_products = await userModel.find({});
+      let productCount = Total_products.length;
+  
+      let produtsPage = await userModel.find({})
+        .limit(10)
+        .skip((page - 1) * 10);
+      res.status(200).send({ data: { produtsPage, productCount } });
     } catch (error) {
-        console.log(error)
-        res.status(404).send("There is something wrong")
+      console.log(error);
+      res.status(400).send({ msg: "Invalid Request Error Happened" });
     }
-    
 })
 module.exports={
     userRouter
